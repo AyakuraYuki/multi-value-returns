@@ -21,14 +21,10 @@ import java.util.Objects;
  */
 abstract class P<L, R> implements Map.Entry<L, R>, Comparable<P<L, R>>, Serializable {
 
+  /**
+   * Serialization version
+   */
   private static final long serialVersionUID = -8121276832502138200L;
-
-  public static final P<?, ?>[] EMPTY_ARRAY = {};
-
-  @SuppressWarnings("unchecked")
-  public static <L, R> P<L, R>[] emptyArray() {
-    return (P<L, R>[]) EMPTY_ARRAY;
-  }
 
   /**
    * Gets the left element from this pair.
@@ -106,7 +102,7 @@ abstract class P<L, R> implements Map.Entry<L, R>, Comparable<P<L, R>>, Serializ
 
   @Override
   public String toString() {
-    return "(" + getLeft() + ", " + getRight() + ")";
+    return "(" + getLeft() + "," + getRight() + ")";
   }
 
   public String toString(final String format) {

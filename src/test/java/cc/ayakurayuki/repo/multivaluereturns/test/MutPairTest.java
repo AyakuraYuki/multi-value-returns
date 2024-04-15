@@ -124,10 +124,10 @@ public class MutPairTest {
 
   @Test
   public void testToString() {
-    assertEquals("(null, null)", MutPair.of(null, null).toString());
-    assertEquals("(null, two)", MutPair.of(null, "two").toString());
-    assertEquals("(one, null)", MutPair.of("one", null).toString());
-    assertEquals("(one, two)", MutPair.of("one", "two").toString());
+    assertEquals("(null,null)", MutPair.of(null, null).toString());
+    assertEquals("(null,two)", MutPair.of(null, "two").toString());
+    assertEquals("(one,null)", MutPair.of("one", null).toString());
+    assertEquals("(one,two)", MutPair.of("one", "two").toString());
   }
 
 }

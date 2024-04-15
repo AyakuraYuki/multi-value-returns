@@ -1,7 +1,5 @@
 package cc.ayakurayuki.repo.multivaluereturns;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -26,15 +24,10 @@ import java.util.Objects;
  */
 public class Result<T, Err extends Throwable> implements IsError, Serializable {
 
+  /**
+   * Serialization version
+   */
   private static final long serialVersionUID = 7524107650488679766L;
-
-  private final T   ok;
-  private final Err err;
-
-  private Result(T ok, Err err) {
-    this.ok = ok;
-    this.err = err;
-  }
 
   /**
    * Creates a result with no error.
@@ -43,7 +36,7 @@ public class Result<T, Err extends Throwable> implements IsError, Serializable {
    *
    * @return a result formed from the only ok field
    */
-  public static <T, Err extends Throwable> Result<T, Err> ok(@Nullable T ok) {
+  public static <T, Err extends Throwable> Result<T, Err> ok(T ok) {
     return new Result<>(ok, null);
   }
 
@@ -54,7 +47,7 @@ public class Result<T, Err extends Throwable> implements IsError, Serializable {
    *
    * @return a result formed from the only err field
    */
-  public static <T, Err extends Throwable> Result<T, Err> err(@Nonnull Err err) {
+  public static <T, Err extends Throwable> Result<T, Err> err(Err err) {
     return new Result<>(null, err);
   }
 
@@ -66,8 +59,16 @@ public class Result<T, Err extends Throwable> implements IsError, Serializable {
    *
    * @return a result formed from the method returns and throws
    */
-  public static <T, Err extends Throwable> Result<T, Err> create(@Nullable T ok, @Nonnull Err err) {
+  public static <T, Err extends Throwable> Result<T, Err> create(T ok, Err err) {
     return new Result<>(ok, err);
+  }
+
+  private final T   ok;
+  private final Err err;
+
+  private Result(T ok, Err err) {
+    this.ok = ok;
+    this.err = err;
   }
 
   /**
@@ -97,9 +98,9 @@ public class Result<T, Err extends Throwable> implements IsError, Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Result<?, ?> result = (Result<?, ?>) o;
-    return Objects.equals(ok, result.ok)
-        && Objects.equals(err, result.err);
+    final Result<?, ?> other = (Result<?, ?>) o;
+    return Objects.equals(ok, other.ok)
+        && Objects.equals(err, other.err);
   }
 
   @Override

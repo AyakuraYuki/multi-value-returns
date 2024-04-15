@@ -74,13 +74,13 @@ public class PairTest {
   @Test
   public void testFormattable_padded() {
     final Pair<String, String> pair = Pair.of("Key", "Value");
-    assertEquals("         (Key, Value)", String.format("%1$21s", pair));
+    assertEquals("         (Key,Value)", String.format("%1$20s", pair));
   }
 
   @Test
   public void testFormattable_simple() {
     final Pair<String, String> pair = Pair.of("Key", "Value");
-    assertEquals("(Key, Value)", String.format("%1$s", pair));
+    assertEquals("(Key,Value)", String.format("%1$s", pair));
   }
 
   @Test
@@ -133,7 +133,7 @@ public class PairTest {
   @Test
   public void testToString() {
     final Pair<String, String> pair = Pair.of("Key", "Value");
-    assertEquals("(Key, Value)", pair.toString());
+    assertEquals("(Key,Value)", pair.toString());
   }
 
   @Test
